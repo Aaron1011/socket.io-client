@@ -11,7 +11,10 @@ test:
 		--reporter $(REPORTER) \
 		--bail \
 		test/index.js
+ifeq ($(TRAVIS_SECURE_ENV_VARS),true)
 	@./node_modules/.bin/zuul -- test/index.js
+endif
+
 
 test-cov:
 	@./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- \
